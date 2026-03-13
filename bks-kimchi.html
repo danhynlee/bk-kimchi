@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BK's Kimchi — Order Form</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0e0e0e;
+      --bg2: #1a1a1a;
+      --bg3: #242424;
+      --border: rgba(255,255,255,0.1);
+      --border2: rgba(255,255,255,0.18);
+      --text: #f0ede8;
+      --text2: #888;
+      --text3: #555;
+      --amber: #EF9F27;
+      --amber-dark: #BA7517;
+      --amber-bg: #FAEEDA;
+      --amber-text: #412402;
+      --green: #639922;
+      --green-bg: #EAF3DE;
+      --green-dark: #27500A;
+      --red: #E24B4A;
+    }
+
+    body {
+      font-family: 'Courier New', Menlo, monospace;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    .app { max-width: 620px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+
+    /* Header */
+    .header { margin-bottom: 2rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border2); }
+    .logo { font-size: 22px; font-weight: bold; letter-spacing: 4px; text-transform: uppercase; }
+    .logo-a { color: var(--amber); }
+    .tagline { font-size: 10px; color: var(--text3); letter-spacing: 2px; text-transform: uppercase; margin-top: 3px; }
+    .blink { animation: bl 1s step-end infinite; }
+    @keyframes bl { 0%,100% { opacity:1; } 50% { opacity:0; } }
+
+    /* Sections */
+    .section { border: 1px solid var(--border); border-radius: 2px; margin-bottom: 12px; }
+    .shdr {
+      display: flex; align-items: center; gap: 8px;
+      padding: 7px 14px;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text2);
+    }
+    .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--amber); flex-shrink: 0; }
+    .dot.g { background: var(--green); }
+    .dot.r { background: var(--red); }
+    .sbody { padding: 14px; }
+
+    /* Form elements */
+    label { display: block; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text2); margin-bottom: 5px; }
+    .lp { color: var(--amber); margin-right: 2px; }
+    input, select, textarea {
+      width: 100%; font-size: 14px; font-family: inherit;
+      padding: 9px 12px;
+      border: 1px solid var(--border2);
+      border-radius: 2px;
+      background: var(--bg3);
+      color: var(--text);
+    }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--amber); }
+    textarea { resize: vertical; min-height: 72px; }
+    ::placeholder { color: var(--text3); }
+    .field { margin-bottom: 12px; }
+    .field:last-child { margin-bottom: 0; }
+
+    /* Quantity controls */
+    .irow {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .irow:last-child { border-bottom: none; padding-bottom: 0; }
+    .irow:first-child { padding-top: 0; }
+    .iname { font-size: 14px; }
+    .isub { font-size: 11px; color: var(--text3); margin-top: 1px; }
+    .qwrap { display: flex; align-items: center; }
+    .qb {
+      width: 30px; height: 30px;
+      border: 1px solid var(--border2);
+      background: var(--bg2);
+      color: var(--text);
+      font-size: 16px; cursor: pointer; font-family: inherit;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .qb:first-child { border-radius: 2px 0 0 2px; }
+    .qb:last-child  { border-radius: 0 2px 2px 0; }
+    .qb:hover { border-color: var(--amber); color: var(--amber); }
+    .qn {
+      width: 38px; height: 30px;
+      border-top: 1px solid var(--border2);
+      border-bottom: 1px solid var(--border2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: bold;
+      background: var(--bg);
+    }
+    .total-hint { text-align: right; font-size: 11px; color: var(--text2); margin-top: 8px; }
+    .total-hint b { color: var(--amber); }
+
+    /* Buttons */
+    .submit-btn {
+      width: 100%; padding: 13px;
+      background: var(--amber); color: var(--amber-text);
+      border: none; border-radius: 2px;
+      font-size: 11px; font-weight: bold; font-family: inherit;
+      letter-spacing: 2px; text-transform: uppercase; cursor: pointer;
+      margin-top: 8px;
+    }
+    .submit-btn:hover { background: var(--amber-dark); color: #fff; }
+    .submit-btn:disabled {
+      background: var(--bg2); color: var(--text3); cursor: not-allowed;
+      border: 1px solid var(--border);
+    }
+    .new-order-btn {
+      width: 100%; padding: 11px;
+      background: none; border: 1px solid var(--amber);
+      border-radius: 2px; color: var(--amber);
+      font-size: 10px; cursor: pointer; margin-top: 8px;
+      font-family: inherit; letter-spacing: 2px; text-transform: uppercase;
+    }
+    .new-order-btn:hover { background: rgba(239,159,39,0.1); }
+
+    /* Admin link */
+    .a-link { text-align: center; margin-top: 1.5rem; }
+    .a-link button {
+      background: none; border: none;
+      color: var(--text3); font-size: 10px; cursor: pointer;
+      font-family: inherit; letter-spacing: 1.5px; text-transform: uppercase;
+    }
+    .a-link button:hover { color: var(--text2); }
+
+    /* Success */
+    .success-box {
+      border: 1px solid var(--green); border-radius: 2px;
+      padding: 1.5rem; text-align: center;
+      background: rgba(99,153,34,0.1);
+    }
+    .success-box h2 { color: #9bd44e; font-size: 15px; letter-spacing: 2px; text-transform: uppercase; }
+    .success-box p  { color: var(--green); font-size: 11px; letter-spacing: 1px; margin-top: 6px; text-transform: uppercase; }
+
+    /* Admin login */
+    .pw-screen { max-width: 300px; margin: 2rem auto; text-align: center; }
+    .pw-sys { font-size: 10px; letter-spacing: 2px; color: var(--text3); text-transform: uppercase; margin-bottom: 1.5rem; }
+    .pw-screen h2 { font-size: 18px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 4px; }
+    .pw-err { color: var(--red); font-size: 10px; margin-top: 8px; letter-spacing: 1px; text-transform: uppercase; }
+
+    /* Admin dashboard */
+    .adm-hdr {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      margin-bottom: 1.5rem; padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border2);
+    }
+    .adm-title { font-size: 16px; letter-spacing: 3px; text-transform: uppercase; }
+    .adm-user  { font-size: 10px; color: var(--amber); letter-spacing: 1px; margin-top: 3px; text-transform: uppercase; }
+    .logout-btn {
+      background: none; border: 1px solid var(--border); border-radius: 2px;
+      color: var(--text2); font-size: 10px; cursor: pointer;
+      font-family: inherit; letter-spacing: 1px; padding: 5px 10px; text-transform: uppercase;
+    }
+    .logout-btn:hover { border-color: var(--red); color: var(--red); }
+
+    /* Tabs */
+    .tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem; }
+    .tab-btn {
+      padding: 8px 18px; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+      font-family: inherit; background: none; border: none; color: var(--text3);
+      cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px;
+    }
+    .tab-btn.on { color: var(--amber); border-bottom-color: var(--amber); }
+
+    /* Stats */
+    .stat-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 1.5rem; }
+    .stat-card { border: 1px solid var(--border); border-radius: 2px; padding: 12px; background: var(--bg2); }
+    .sl { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--text3); }
+    .sv { font-size: 26px; font-weight: bold; margin-top: 2px; color: var(--text); }
+
+    /* Order cards */
+    .ocard {
+      border: 1px solid var(--border); border-radius: 2px;
+      padding: 12px 14px; margin-bottom: 8px; position: relative;
+    }
+    .ocard:hover { border-color: rgba(239,159,39,0.4); }
+    .otop { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+    .oname    { font-size: 15px; font-weight: bold; }
+    .oid      { font-size: 10px; letter-spacing: 1px; color: var(--text3); flex-shrink: 0; }
+    .ocontact { font-size: 12px; color: var(--text2); margin-top: 3px; }
+    .badge { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 2px; margin: 3px 3px 0 0; }
+    .badge.ty { border: 1px solid rgba(239,159,39,0.4); background: rgba(239,159,39,0.08); color: var(--amber); }
+    .badge.sz { border: 1px solid rgba(99,153,34,0.4); background: rgba(99,153,34,0.08); color: #9bd44e; }
+    .onotes { font-size: 12px; color: var(--text2); margin-top: 8px; font-style: italic; }
+    .ots    { font-size: 10px; color: var(--text3); margin-top: 8px; letter-spacing: 0.5px; }
+    .del-btn {
+      position: absolute; top: 8px; right: 10px;
+      background: none; border: none; color: var(--text3);
+      font-size: 18px; cursor: pointer; display: none; padding: 0 4px; line-height: 1;
+    }
+    .ocard:hover .del-btn { display: block; }
+    .del-btn:hover { color: var(--red); }
+
+    /* Settings toggles */
+    .trow {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+    }
+    .trow:last-child { border-bottom: none; padding-bottom: 0; }
+    .trow:first-child { padding-top: 0; }
+    .tlbl { font-size: 13px; }
+    .tsub { font-size: 11px; color: var(--text3); margin-top: 1px; }
+
+    /* Toggle switch */
+    .sw { position: relative; width: 38px; height: 20px; flex-shrink: 0; }
+    .sw input { opacity: 0; width: 0; height: 0; position: absolute; }
+    .sw-tr {
+      position: absolute; inset: 0; border-radius: 10px;
+      background: var(--bg3); cursor: pointer;
+      border: 1px solid var(--border2); transition: background .15s, border-color .15s;
+    }
+    .sw input:checked + .sw-tr { background: var(--amber); border-color: var(--amber-dark); }
+    .sw-th {
+      position: absolute; width: 14px; height: 14px;
+      background: #fff; border-radius: 50%;
+      top: 3px; left: 3px; pointer-events: none; transition: transform .15s;
+    }
+    .sw input:checked ~ .sw-th { transform: translateX(18px); }
+
+    /* Misc */
+    .empty { text-align: center; padding: 2.5rem; font-size: 11px; color: var(--text3); letter-spacing: 1.5px; text-transform: uppercase; }
+    .back-btn {
+      background: none; border: none; color: var(--text2);
+      font-size: 10px; cursor: pointer; font-family: inherit;
+      letter-spacing: 1.5px; text-transform: uppercase; padding: 0;
+    }
+    .back-btn:hover { color: var(--amber); }
+    .clear-btn {
+      width: 100%; padding: 10px;
+      background: none; border: 1px solid var(--red); border-radius: 2px;
+      color: var(--red); font-size: 10px; cursor: pointer;
+      font-family: inherit; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 1rem;
+    }
+    .clear-btn:hover { background: rgba(226,75,74,0.1); }
+    .settings-note { font-size: 11px; color: var(--text3); letter-spacing: 0.5px; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+<div class="app" id="root"></div>
+
+<script>
+  /* ─────────────────────────────────────────
+     CONFIGURATION — edit these to customize
+  ───────────────────────────────────────── */
+
+  // Admin passwords: { "password": "Display Name" }
+  const ADMINS = {
+    "bkadmin":   "You (Admin)",
+    "dadkimchi": "Dad"
+  };
+
+  // Storage keys (change if you want a fresh slate)
+  const ORDERS_KEY   = "bk_orders_v2";
+  const SETTINGS_KEY = "bk_settings_v2";
+
+  // Kimchi types shown on the order form
+  const TYPES = [
+    { key: "napa",     en: "Napa Cabbage Kimchi",   ko: "배추 김치"   },
+    { key: "radish",   en: "Radish Kkakdugi",        ko: "깍두기"      },
+    { key: "cucumber", en: "Cucumber Oi Sobagi",     ko: "오이소박이"   },
+    { key: "white",    en: "White Kimchi",            ko: "백 김치"    }
+  ];
+
+  // Jar sizes
+  const SIZES = [
+    { key: "small",  en: "Small",  sub: "1 pint"   },
+    { key: "medium", en: "Medium", sub: "1 quart"  },
+    { key: "large",  en: "Large",  sub: "½ gallon" }
+  ];
+
+  /* ─────────────────────────────────────────
+     DEFAULT SETTINGS (used on first load)
+  ───────────────────────────────────────── */
+  const DEF_SETTINGS = {
+    showSizes: true,
+    showNotes: true,
+    showPhone: true,
+    showEmail: true,
+    types: Object.fromEntries(TYPES.map(t => [t.key, true]))
+  };
+
+  /* ─────────────────────────────────────────
+     APP STATE
+  ───────────────────────────────────────── */
+  let S = {
+    view: "order",
+    submitted: false,
+    adminUser: null,
+    adminTab: "orders",
+    pwInput: "",
+    pwError: false,
+    orders: [],
+    settings: JSON.parse(JSON.stringify(DEF_SETTINGS)),
+    loading: true,
+    form: { name: "", phone: "", email: "", notes: "" },
+    counts: Object.fromEntries(TYPES.map(t => [t.key, 0])),
+    sizes:  Object.fromEntries(SIZES.map(s => [s.key, 0]))
+  };
+
+  /* ─────────────────────────────────────────
+     STORAGE
+     Uses window.storage if available (Claude),
+     falls back to localStorage for self-hosted
+  ───────────────────────────────────────── */
+  const store = {
+    async get(key) {
+      if (window.storage) {
+        try { const r = await window.storage.get(key, true); return r ? JSON.parse(r.value) : null; } catch { return null; }
+      }
+      try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : null; } catch { return null; }
+    },
+    async set(key, val) {
+      if (window.storage) {
+        try { await window.storage.set(key, JSON.stringify(val), true); } catch {}
+      } else {
+        try { localStorage.setItem(key, JSON.stringify(val)); } catch {}
+      }
+    }
+  };
+
+  async function loadData() {
+    const orders = await store.get(ORDERS_KEY);
+    S.orders = orders || [];
+    const settings = await store.get(SETTINGS_KEY);
+    if (settings) {
+      S.settings = {
+        ...DEF_SETTINGS, ...settings,
+        types: { ...DEF_SETTINGS.types, ...(settings.types || {}) }
+      };
+    }
+    S.loading = false;
+    render();
+  }
+
+  async function saveOrders()   { await store.set(ORDERS_KEY, S.orders); }
+  async function saveSettings() { await store.set(SETTINGS_KEY, S.settings); }
+
+  /* ─────────────────────────────────────────
+     HELPERS
+  ───────────────────────────────────────── */
+  function adj(map, k, d) { map[k] = Math.max(0, (map[k] || 0) + d); }
+  function totalSizes() { return Object.values(S.sizes).reduce((a, b) => a + b, 0); }
+  function totalTypes() {
+    return TYPES.filter(t => S.settings.types[t.key]).reduce((s, t) => s + (S.counts[t.key] || 0), 0);
+  }
+  function canSubmit() {
+    const f = S.form;
+    return f.name.trim() && (f.phone.trim() || f.email.trim())
+      && totalTypes() > 0
+      && (!S.settings.showSizes || totalSizes() > 0);
+  }
+  function esc(s) {
+    return String(s || '')
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  /* ─────────────────────────────────────────
+     ACTIONS
+  ───────────────────────────────────────── */
+  async function submitOrder() {
+    if (!canSubmit()) return;
+    const f = S.form;
+    const order = {
+      id: Date.now(),
+      name:  f.name.trim(),
+      phone: f.phone.trim(),
+      email: f.email.trim(),
+      notes: f.notes.trim(),
+      types: TYPES.filter(t => S.settings.types[t.key] && S.counts[t.key] > 0)
+                  .map(t => ({ key: t.key, qty: S.counts[t.key], en: t.en, ko: t.ko })),
+      sizes: SIZES.filter(s => S.sizes[s.key] > 0)
+                  .map(s => ({ key: s.key, qty: S.sizes[s.key], en: s.en })),
+      date: new Date().toLocaleString("en-US", {
+        month: "short", day: "numeric", year: "numeric",
+        hour: "numeric", minute: "2-digit"
+      })
+    };
+    S.orders.unshift(order);
+    await saveOrders();
+    S.submitted = true;
+    render();
+  }
+
+  async function deleteOrder(id) {
+    S.orders = S.orders.filter(o => o.id !== id);
+    await saveOrders();
+    render();
+  }
+
+  async function clearOrders() {
+    if (!confirm("Delete all orders? This cannot be undone.")) return;
+    S.orders = [];
+    await saveOrders();
+    render();
+  }
+
+  async function toggleSetting(key, val) {
+    S.settings[key] = val;
+    await saveSettings();
+    render();
+  }
+
+  async function toggleType(key, val) {
+    S.settings.types[key] = val;
+    await saveSettings();
+    render();
+  }
+
+  function checkPw() {
+    const user = ADMINS[S.pwInput];
+    if (user) {
+      S.adminUser = user;
+      S.view = "admin";
+      S.pwInput  = "";
+      S.pwError  = false;
+    } else {
+      S.pwError = true;
+    }
+    render();
+  }
+
+  function resetForm() {
+    S.form   = { name: "", phone: "", email: "", notes: "" };
+    S.counts = Object.fromEntries(TYPES.map(t => [t.key, 0]));
+    S.sizes  = Object.fromEntries(SIZES.map(s => [s.key, 0]));
+    S.submitted = false;
+    render();
+  }
+
+  /* ─────────────────────────────────────────
+     RENDER
+  ───────────────────────────────────────── */
+  function render() {
+    const root = document.getElementById("root");
+    if (S.loading) {
+      root.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--text3);font-size:11px;letter-spacing:2px;text-transform:uppercase">Initializing...</div>';
+      return;
+    }
+    if (S.view === "order")       renderOrder(root);
+    else if (S.view === "admin_login") renderLogin(root);
+    else if (S.view === "admin")  renderAdmin(root);
+  }
+
+  function renderOrder(root) {
+    if (S.submitted) {
+      root.innerHTML = `
+        <div class="header">
+          <div class="logo"><span class="logo-a">BK</span>'S KIMCHI</div>
+          <div class="tagline">Handmade · Korean Traditional<span class="blink"> _</span></div>
+        </div>
+        <div class="success-box">
+          <h2>✓ Order Received</h2>
+          <p>We'll contact you when your kimchi is ready</p>
+        </div>
+        <button class="new-order-btn" onclick="resetForm()">[ Place another order ]</button>
+        <div class="a-link"><button onclick="S.view='admin_login';render()">Admin access</button></div>`;
+      return;
+    }
+
+    const activeTypes = TYPES.filter(t => S.settings.types[t.key]);
+
+    const typesHtml = activeTypes.map(t => `
+      <div class="irow">
+        <div><div class="iname">${esc(t.en)}</div><div class="isub">${esc(t.ko)}</div></div>
+        <div class="qwrap">
+          <button class="qb" onclick="adj(S.counts,'${t.key}',-1);render()">−</button>
+          <div class="qn">${S.counts[t.key] || 0}</div>
+          <button class="qb" onclick="adj(S.counts,'${t.key}',1);render()">+</button>
+        </div>
+      </div>`).join("");
+
+    const sizesHtml = S.settings.showSizes ? `
+      <div class="section">
+        <div class="shdr"><span class="dot"></span>Jar Size / 크기</div>
+        <div class="sbody">
+          ${SIZES.map(s => `
+            <div class="irow">
+              <div><div class="iname">${esc(s.en)}</div><div class="isub">${esc(s.sub)}</div></div>
+              <div class="qwrap">
+                <button class="qb" onclick="adj(S.sizes,'${s.key}',-1);render()">−</button>
+                <div class="qn">${S.sizes[s.key] || 0}</div>
+                <button class="qb" onclick="adj(S.sizes,'${s.key}',1);render()">+</button>
+              </div>
+            </div>`).join("")}
+          ${totalSizes() > 0 ? `<div class="total-hint"><b>${totalSizes()}</b> jar${totalSizes() !== 1 ? 's' : ''} total</div>` : ''}
+        </div>
+      </div>` : '';
+
+    const notesHtml = S.settings.showNotes ? `
+      <div class="section">
+        <div class="shdr"><span class="dot"></span>Notes / 메모</div>
+        <div class="sbody">
+          <textarea placeholder="Spice level, pickup time, 메모..." oninput="S.form.notes=this.value">${esc(S.form.notes)}</textarea>
+        </div>
+      </div>` : '';
+
+    const submitBtn = canSubmit()
+      ? `<button class="submit-btn" onclick="submitOrder()">[ Submit Order ]</button>`
+      : `<button class="submit-btn" disabled>Fill in required fields above</button>`;
+
+    root.innerHTML = `
+      <div class="header">
+        <div class="logo"><span class="logo-a">BK</span>'S KIMCHI</div>
+        <div class="tagline">Handmade · Korean Traditional<span class="blink"> _</span></div>
+      </div>
+      <div class="section">
+        <div class="shdr"><span class="dot"></span>Your Info / 정보</div>
+        <div class="sbody">
+          <div class="field">
+            <label><span class="lp">›</span>Name / 이름 *</label>
+            <input type="text" lang="ko" autocomplete="name" placeholder="Full name / 성함"
+              value="${esc(S.form.name)}" oninput="S.form.name=this.value">
+          </div>
+          ${S.settings.showPhone ? `
+          <div class="field">
+            <label><span class="lp">›</span>Phone / 전화번호</label>
+            <input type="tel" autocomplete="tel" placeholder="(516) 555-0100"
+              value="${esc(S.form.phone)}" oninput="S.form.phone=this.value">
+          </div>` : ''}
+          ${S.settings.showEmail ? `
+          <div class="field" style="margin-bottom:0">
+            <label><span class="lp">›</span>Email / 이메일</label>
+            <input type="email" autocomplete="email" placeholder="email@example.com"
+              value="${esc(S.form.email)}" oninput="S.form.email=this.value">
+          </div>` : ''}
+          <div style="font-size:10px;color:var(--text3);letter-spacing:0.5px;margin-top:6px">
+            * name + phone or email required
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="shdr"><span class="dot"></span>Kimchi Type / 종류</div>
+        <div class="sbody">
+          ${activeTypes.length ? typesHtml : '<div class="empty" style="padding:1rem">No types currently available</div>'}
+        </div>
+      </div>
+      ${sizesHtml}
+      ${notesHtml}
+      ${submitBtn}
+      <div class="a-link"><button onclick="S.view='admin_login';render()">Admin access</button></div>`;
+  }
+
+  function renderLogin(root) {
+    root.innerHTML = `
+      <div class="header">
+        <div class="logo"><span class="logo-a">BK</span>'S KIMCHI</div>
+        <div class="tagline">Admin Portal<span class="blink"> _</span></div>
+      </div>
+      <div class="pw-screen">
+        <div class="pw-sys">// Secure Admin Access</div>
+        <h2>Sign In</h2>
+        <div style="font-size:11px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin-bottom:1.5rem">Enter admin password</div>
+        <div class="field">
+          <input type="password" id="pwi" placeholder="••••••••"
+            value="${esc(S.pwInput)}"
+            oninput="S.pwInput=this.value"
+            onkeydown="if(event.key==='Enter')checkPw()">
+        </div>
+        <button class="submit-btn" onclick="checkPw()">[ Enter ]</button>
+        ${S.pwError ? '<div class="pw-err">// Access denied</div>' : ''}
+      </div>
+      <div class="a-link">
+        <button onclick="S.view='order';S.pwInput='';S.pwError=false;render()">← Back to order form</button>
+      </div>`;
+    setTimeout(() => { const el = document.getElementById("pwi"); if (el) el.focus(); }, 50);
+  }
+
+  function renderAdmin(root) {
+    const n    = S.orders.length;
+    const jars = S.orders.reduce((s, o) => s + o.sizes.reduce((a, b) => a + b.qty, 0), 0);
+    const activeCount = TYPES.filter(t => S.settings.types[t.key]).length;
+
+    const ordersHtml = n === 0
+      ? `<div class="empty">// No orders yet</div>`
+      : S.orders.map((o, i) => {
+          const typeBadges = o.types.map(t => `<span class="badge ty">${t.qty}× ${esc(t.en)}</span>`).join("");
+          const sizeBadges = o.sizes.map(s => `<span class="badge sz">${s.qty}× ${esc(s.en||s.key)}</span>`).join("");
+          return `
+            <div class="ocard">
+              <button class="del-btn" onclick="deleteOrder(${o.id})">×</button>
+              <div class="otop">
+                <div>
+                  <div class="oname">${esc(o.name)}</div>
+                  ${o.phone || o.email ? `<div class="ocontact">${o.phone ? `📞 ${esc(o.phone)}` : ''}${o.phone && o.email ? ' · ' : ''}${o.email ? `✉ ${esc(o.email)}` : ''}</div>` : ''}
+                </div>
+                <div class="oid">#${n - i}</div>
+              </div>
+              <div style="margin-top:8px">${typeBadges}</div>
+              ${sizeBadges ? `<div style="margin-top:2px">${sizeBadges}</div>` : ''}
+              ${o.notes ? `<div class="onotes">"${esc(o.notes)}"</div>` : ''}
+              <div class="ots">${esc(o.date)}</div>
+            </div>`;
+        }).join("");
+
+    const settingsHtml = `
+      <div class="section">
+        <div class="shdr"><span class="dot g"></span>Kimchi Types</div>
+        <div class="sbody">
+          ${TYPES.map(t => `
+            <div class="trow">
+              <div><div class="tlbl">${esc(t.en)}</div><div class="tsub">${esc(t.ko)}</div></div>
+              <label class="sw">
+                <input type="checkbox" ${S.settings.types[t.key] ? 'checked' : ''} onchange="toggleType('${t.key}',this.checked)">
+                <div class="sw-tr"></div><div class="sw-th"></div>
+              </label>
+            </div>`).join("")}
+          <div class="settings-note">Disabled types are hidden from the order form immediately</div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="shdr"><span class="dot g"></span>Form Sections</div>
+        <div class="sbody">
+          ${[
+            { key: "showSizes", label: "Jar size selection", sub: "Show small/medium/large picker" },
+            { key: "showNotes", label: "Notes field",        sub: "Special requests / 메모" },
+            { key: "showPhone", label: "Phone field",        sub: "Collect phone number" },
+            { key: "showEmail", label: "Email field",        sub: "Collect email address" }
+          ].map(item => `
+            <div class="trow">
+              <div><div class="tlbl">${item.label}</div><div class="tsub">${item.sub}</div></div>
+              <label class="sw">
+                <input type="checkbox" ${S.settings[item.key] ? 'checked' : ''} onchange="toggleSetting('${item.key}',this.checked)">
+                <div class="sw-tr"></div><div class="sw-th"></div>
+              </label>
+            </div>`).join("")}
+        </div>
+      </div>`;
+
+    root.innerHTML = `
+      <div class="adm-hdr">
+        <div>
+          <div class="adm-title">Order Dashboard</div>
+          <div class="adm-user">// Signed in as ${esc(S.adminUser)}</div>
+        </div>
+        <button class="logout-btn" onclick="S.adminUser=null;S.view='order';render()">Sign out</button>
+      </div>
+      <div class="tabs">
+        <button class="tab-btn ${S.adminTab === 'orders' ? 'on' : ''}" onclick="S.adminTab='orders';render()">Orders (${n})</button>
+        <button class="tab-btn ${S.adminTab === 'settings' ? 'on' : ''}" onclick="S.adminTab='settings';render()">Form Settings</button>
+      </div>
+      ${S.adminTab === 'orders' ? `
+        <div class="stat-row">
+          <div class="stat-card"><div class="sl">Total orders</div><div class="sv">${n}</div></div>
+          <div class="stat-card"><div class="sl">Total jars</div><div class="sv">${jars}</div></div>
+          <div class="stat-card"><div class="sl">Types active</div><div class="sv">${activeCount}</div></div>
+        </div>
+        ${ordersHtml}
+        ${n > 0 ? `<button class="clear-btn" onclick="clearOrders()">[ Clear all orders ]</button>` : ''}
+      ` : settingsHtml}
+      <div style="text-align:center;margin-top:1.5rem">
+        <button class="back-btn" onclick="S.view='order';render()">← Back to order form</button>
+      </div>`;
+  }
+
+  /* ─────────────────────────────────────────
+     INIT
+  ───────────────────────────────────────── */
+  loadData();
+</script>
+</body>
+</html>
