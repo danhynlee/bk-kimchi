@@ -18,7 +18,6 @@
       --text3: #555;
       --amber: #EF9F27;
       --amber-dark: #BA7517;
-      --amber-bg: #FAEEDA;
       --amber-text: #412402;
       --green: #639922;
       --green-bg: #EAF3DE;
@@ -37,7 +36,6 @@
 
     .app { max-width: 620px; margin: 0 auto; padding: 2rem 1rem 4rem; }
 
-    /* Header */
     .header { margin-bottom: 2rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border2); }
     .logo { font-size: 22px; font-weight: bold; letter-spacing: 4px; text-transform: uppercase; }
     .logo-a { color: var(--amber); }
@@ -45,7 +43,6 @@
     .blink { animation: bl 1s step-end infinite; }
     @keyframes bl { 0%,100% { opacity:1; } 50% { opacity:0; } }
 
-    /* Sections */
     .section { border: 1px solid var(--border); border-radius: 2px; margin-bottom: 12px; }
     .shdr {
       display: flex; align-items: center; gap: 8px;
@@ -59,7 +56,6 @@
     .dot.r { background: var(--red); }
     .sbody { padding: 14px; }
 
-    /* Form elements */
     label { display: block; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text2); margin-bottom: 5px; }
     .lp { color: var(--amber); margin-right: 2px; }
     input, select, textarea {
@@ -76,11 +72,9 @@
     .field { margin-bottom: 12px; }
     .field:last-child { margin-bottom: 0; }
 
-    /* Quantity controls */
     .irow {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border);
+      padding: 10px 0; border-bottom: 1px solid var(--border);
     }
     .irow:last-child { border-bottom: none; padding-bottom: 0; }
     .irow:first-child { padding-top: 0; }
@@ -90,8 +84,7 @@
     .qb {
       width: 30px; height: 30px;
       border: 1px solid var(--border2);
-      background: var(--bg2);
-      color: var(--text);
+      background: var(--bg2); color: var(--text);
       font-size: 16px; cursor: pointer; font-family: inherit;
       display: flex; align-items: center; justify-content: center;
     }
@@ -100,23 +93,19 @@
     .qb:hover { border-color: var(--amber); color: var(--amber); }
     .qn {
       width: 38px; height: 30px;
-      border-top: 1px solid var(--border2);
-      border-bottom: 1px solid var(--border2);
+      border-top: 1px solid var(--border2); border-bottom: 1px solid var(--border2);
       display: flex; align-items: center; justify-content: center;
-      font-size: 14px; font-weight: bold;
-      background: var(--bg);
+      font-size: 14px; font-weight: bold; background: var(--bg);
     }
     .total-hint { text-align: right; font-size: 11px; color: var(--text2); margin-top: 8px; }
     .total-hint b { color: var(--amber); }
 
-    /* Buttons */
     .submit-btn {
       width: 100%; padding: 13px;
       background: var(--amber); color: var(--amber-text);
       border: none; border-radius: 2px;
       font-size: 11px; font-weight: bold; font-family: inherit;
-      letter-spacing: 2px; text-transform: uppercase; cursor: pointer;
-      margin-top: 8px;
+      letter-spacing: 2px; text-transform: uppercase; cursor: pointer; margin-top: 8px;
     }
     .submit-btn:hover { background: var(--amber-dark); color: #fff; }
     .submit-btn:disabled {
@@ -132,7 +121,6 @@
     }
     .new-order-btn:hover { background: rgba(239,159,39,0.1); }
 
-    /* Admin link */
     .a-link { text-align: center; margin-top: 1.5rem; }
     .a-link button {
       background: none; border: none;
@@ -141,7 +129,6 @@
     }
     .a-link button:hover { color: var(--text2); }
 
-    /* Success */
     .success-box {
       border: 1px solid var(--green); border-radius: 2px;
       padding: 1.5rem; text-align: center;
@@ -150,13 +137,11 @@
     .success-box h2 { color: #9bd44e; font-size: 15px; letter-spacing: 2px; text-transform: uppercase; }
     .success-box p  { color: var(--green); font-size: 11px; letter-spacing: 1px; margin-top: 6px; text-transform: uppercase; }
 
-    /* Admin login */
     .pw-screen { max-width: 300px; margin: 2rem auto; text-align: center; }
     .pw-sys { font-size: 10px; letter-spacing: 2px; color: var(--text3); text-transform: uppercase; margin-bottom: 1.5rem; }
     .pw-screen h2 { font-size: 18px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 4px; }
     .pw-err { color: var(--red); font-size: 10px; margin-top: 8px; letter-spacing: 1px; text-transform: uppercase; }
 
-    /* Admin dashboard */
     .adm-hdr {
       display: flex; align-items: flex-start; justify-content: space-between;
       margin-bottom: 1.5rem; padding-bottom: 1rem;
@@ -171,7 +156,6 @@
     }
     .logout-btn:hover { border-color: var(--red); color: var(--red); }
 
-    /* Tabs */
     .tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem; }
     .tab-btn {
       padding: 8px 18px; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
@@ -180,13 +164,11 @@
     }
     .tab-btn.on { color: var(--amber); border-bottom-color: var(--amber); }
 
-    /* Stats */
     .stat-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 1.5rem; }
     .stat-card { border: 1px solid var(--border); border-radius: 2px; padding: 12px; background: var(--bg2); }
     .sl { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--text3); }
     .sv { font-size: 26px; font-weight: bold; margin-top: 2px; color: var(--text); }
 
-    /* Order cards */
     .ocard {
       border: 1px solid var(--border); border-radius: 2px;
       padding: 12px 14px; margin-bottom: 8px; position: relative;
@@ -209,7 +191,6 @@
     .ocard:hover .del-btn { display: block; }
     .del-btn:hover { color: var(--red); }
 
-    /* Settings toggles */
     .trow {
       display: flex; align-items: center; justify-content: space-between;
       padding: 10px 0; border-bottom: 1px solid var(--border);
@@ -219,7 +200,6 @@
     .tlbl { font-size: 13px; }
     .tsub { font-size: 11px; color: var(--text3); margin-top: 1px; }
 
-    /* Toggle switch */
     .sw { position: relative; width: 38px; height: 20px; flex-shrink: 0; }
     .sw input { opacity: 0; width: 0; height: 0; position: absolute; }
     .sw-tr {
@@ -235,7 +215,6 @@
     }
     .sw input:checked ~ .sw-th { transform: translateX(18px); }
 
-    /* Misc */
     .empty { text-align: center; padding: 2.5rem; font-size: 11px; color: var(--text3); letter-spacing: 1.5px; text-transform: uppercase; }
     .back-btn {
       background: none; border: none; color: var(--text2);
@@ -251,6 +230,15 @@
     }
     .clear-btn:hover { background: rgba(226,75,74,0.1); }
     .settings-note { font-size: 11px; color: var(--text3); letter-spacing: 0.5px; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
+
+    .syncing { font-size: 10px; color: var(--text3); letter-spacing: 1px; text-transform: uppercase; text-align: center; padding: 3rem; }
+    .sync-indicator {
+      display: inline-block; font-size: 10px; color: var(--text3);
+      letter-spacing: 1px; text-transform: uppercase; margin-left: 8px;
+      vertical-align: middle;
+    }
+    .sync-indicator.saving { color: var(--amber); }
+    .sync-indicator.saved  { color: var(--green); }
   </style>
 </head>
 <body>
@@ -258,28 +246,28 @@
 
 <script>
   /* ─────────────────────────────────────────
-     CONFIGURATION — edit these to customize
+     FIREBASE CONFIG
   ───────────────────────────────────────── */
+  const FB_URL = "https://bks-kimchi-default-rtdb.firebaseio.com";
 
-  // Admin passwords: { "password": "Display Name" }
+  /* ─────────────────────────────────────────
+     ADMIN PASSWORDS
+  ───────────────────────────────────────── */
   const ADMINS = {
     "bkadmin":   "You (Admin)",
     "dadkimchi": "Dad"
   };
 
-  // Storage keys (change if you want a fresh slate)
-  const ORDERS_KEY   = "bk_orders_v2";
-  const SETTINGS_KEY = "bk_settings_v2";
-
-  // Kimchi types shown on the order form
+  /* ─────────────────────────────────────────
+     KIMCHI TYPES & JAR SIZES
+  ───────────────────────────────────────── */
   const TYPES = [
-    { key: "napa",     en: "Napa Cabbage Kimchi",   ko: "배추 김치"   },
-    { key: "radish",   en: "Radish Kkakdugi",        ko: "깍두기"      },
-    { key: "cucumber", en: "Cucumber Oi Sobagi",     ko: "오이소박이"   },
-    { key: "white",    en: "White Kimchi",            ko: "백 김치"    }
+    { key: "napa",     en: "Napa Cabbage Kimchi", ko: "배추 김치"  },
+    { key: "radish",   en: "Radish Kkakdugi",      ko: "깍두기"    },
+    { key: "cucumber", en: "Cucumber Oi Sobagi",   ko: "오이소박이" },
+    { key: "white",    en: "White Kimchi",          ko: "백 김치"  }
   ];
 
-  // Jar sizes
   const SIZES = [
     { key: "small",  en: "Small",  sub: "1 pint"   },
     { key: "medium", en: "Medium", sub: "1 quart"  },
@@ -287,7 +275,7 @@
   ];
 
   /* ─────────────────────────────────────────
-     DEFAULT SETTINGS (used on first load)
+     DEFAULT SETTINGS
   ───────────────────────────────────────── */
   const DEF_SETTINGS = {
     showSizes: true,
@@ -305,72 +293,79 @@
     submitted: false,
     adminUser: null,
     adminTab: "orders",
-    pwInput: "",
-    pwError: false,
+    pwInput: "", pwError: false,
     orders: [],
     settings: JSON.parse(JSON.stringify(DEF_SETTINGS)),
     loading: true,
+    syncStatus: "",
     form: { name: "", phone: "", email: "", notes: "" },
     counts: Object.fromEntries(TYPES.map(t => [t.key, 0])),
     sizes:  Object.fromEntries(SIZES.map(s => [s.key, 0]))
   };
 
   /* ─────────────────────────────────────────
-     STORAGE
-     Uses window.storage if available (Claude),
-     falls back to localStorage for self-hosted
+     FIREBASE REST HELPERS
   ───────────────────────────────────────── */
-  const store = {
-    async get(key) {
-      if (window.storage) {
-        try { const r = await window.storage.get(key, true); return r ? JSON.parse(r.value) : null; } catch { return null; }
-      }
-      try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : null; } catch { return null; }
-    },
-    async set(key, val) {
-      if (window.storage) {
-        try { await window.storage.set(key, JSON.stringify(val), true); } catch {}
-      } else {
-        try { localStorage.setItem(key, JSON.stringify(val)); } catch {}
-      }
-    }
-  };
+  async function fbGet(path) {
+    const res = await fetch(`${FB_URL}/${path}.json`);
+    if (!res.ok) throw new Error("Firebase read failed");
+    return res.json();
+  }
 
+  async function fbSet(path, data) {
+    const res = await fetch(`${FB_URL}/${path}.json`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+    if (!res.ok) throw new Error("Firebase write failed");
+    return res.json();
+  }
+
+  async function fbPush(path, data) {
+    const res = await fetch(`${FB_URL}/${path}.json`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+    if (!res.ok) throw new Error("Firebase push failed");
+    return res.json();
+  }
+
+  async function fbDelete(path) {
+    await fetch(`${FB_URL}/${path}.json`, { method: "DELETE" });
+  }
+
+  /* ─────────────────────────────────────────
+     LOAD DATA
+  ───────────────────────────────────────── */
   async function loadData() {
-    const orders = await store.get(ORDERS_KEY);
-    S.orders = orders || [];
-    const settings = await store.get(SETTINGS_KEY);
-    if (settings) {
-      S.settings = {
-        ...DEF_SETTINGS, ...settings,
-        types: { ...DEF_SETTINGS.types, ...(settings.types || {}) }
-      };
+    try {
+      const [rawOrders, rawSettings] = await Promise.all([
+        fbGet("orders"),
+        fbGet("settings")
+      ]);
+
+      // Firebase stores pushed items as an object keyed by ID
+      if (rawOrders && typeof rawOrders === "object") {
+        S.orders = Object.entries(rawOrders)
+          .map(([fbKey, o]) => ({ ...o, fbKey }))
+          .sort((a, b) => b.id - a.id);
+      } else {
+        S.orders = [];
+      }
+
+      if (rawSettings) {
+        S.settings = {
+          ...DEF_SETTINGS, ...rawSettings,
+          types: { ...DEF_SETTINGS.types, ...(rawSettings.types || {}) }
+        };
+      }
+    } catch (e) {
+      console.error("Load error:", e);
     }
     S.loading = false;
     render();
-  }
-
-  async function saveOrders()   { await store.set(ORDERS_KEY, S.orders); }
-  async function saveSettings() { await store.set(SETTINGS_KEY, S.settings); }
-
-  /* ─────────────────────────────────────────
-     HELPERS
-  ───────────────────────────────────────── */
-  function adj(map, k, d) { map[k] = Math.max(0, (map[k] || 0) + d); }
-  function totalSizes() { return Object.values(S.sizes).reduce((a, b) => a + b, 0); }
-  function totalTypes() {
-    return TYPES.filter(t => S.settings.types[t.key]).reduce((s, t) => s + (S.counts[t.key] || 0), 0);
-  }
-  function canSubmit() {
-    const f = S.form;
-    return f.name.trim() && (f.phone.trim() || f.email.trim())
-      && totalTypes() > 0
-      && (!S.settings.showSizes || totalSizes() > 0);
-  }
-  function esc(s) {
-    return String(s || '')
-      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
 
   /* ─────────────────────────────────────────
@@ -394,35 +389,49 @@
         hour: "numeric", minute: "2-digit"
       })
     };
-    S.orders.unshift(order);
-    await saveOrders();
-    S.submitted = true;
+    try {
+      const result = await fbPush("orders", order);
+      order.fbKey = result.name;
+      S.orders.unshift(order);
+      S.submitted = true;
+    } catch (e) {
+      alert("Could not save order. Check your connection and try again.");
+      return;
+    }
     render();
   }
 
-  async function deleteOrder(id) {
-    S.orders = S.orders.filter(o => o.id !== id);
-    await saveOrders();
-    render();
+  async function deleteOrder(fbKey) {
+    try {
+      await fbDelete(`orders/${fbKey}`);
+      S.orders = S.orders.filter(o => o.fbKey !== fbKey);
+      render();
+    } catch (e) {
+      alert("Could not delete order. Try again.");
+    }
   }
 
   async function clearOrders() {
     if (!confirm("Delete all orders? This cannot be undone.")) return;
-    S.orders = [];
-    await saveOrders();
-    render();
+    try {
+      await fbDelete("orders");
+      S.orders = [];
+      render();
+    } catch (e) {
+      alert("Could not clear orders. Try again.");
+    }
   }
 
   async function toggleSetting(key, val) {
     S.settings[key] = val;
-    await saveSettings();
     render();
+    await fbSet("settings", S.settings);
   }
 
   async function toggleType(key, val) {
     S.settings.types[key] = val;
-    await saveSettings();
     render();
+    await fbSet("settings", S.settings);
   }
 
   function checkPw() {
@@ -430,8 +439,7 @@
     if (user) {
       S.adminUser = user;
       S.view = "admin";
-      S.pwInput  = "";
-      S.pwError  = false;
+      S.pwInput = ""; S.pwError = false;
     } else {
       S.pwError = true;
     }
@@ -447,17 +455,37 @@
   }
 
   /* ─────────────────────────────────────────
+     HELPERS
+  ───────────────────────────────────────── */
+  function adj(map, k, d) { map[k] = Math.max(0, (map[k] || 0) + d); }
+  function totalSizes() { return Object.values(S.sizes).reduce((a, b) => a + b, 0); }
+  function totalTypes() {
+    return TYPES.filter(t => S.settings.types[t.key]).reduce((s, t) => s + (S.counts[t.key] || 0), 0);
+  }
+  function canSubmit() {
+    const f = S.form;
+    return f.name.trim() && (f.phone.trim() || f.email.trim())
+      && totalTypes() > 0
+      && (!S.settings.showSizes || totalSizes() > 0);
+  }
+  function esc(s) {
+    return String(s || '')
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  /* ─────────────────────────────────────────
      RENDER
   ───────────────────────────────────────── */
   function render() {
     const root = document.getElementById("root");
     if (S.loading) {
-      root.innerHTML = '<div style="text-align:center;padding:3rem;color:var(--text3);font-size:11px;letter-spacing:2px;text-transform:uppercase">Initializing...</div>';
+      root.innerHTML = '<div class="syncing">// Connecting to database<span class="blink"> _</span></div>';
       return;
     }
-    if (S.view === "order")       renderOrder(root);
+    if (S.view === "order")            renderOrder(root);
     else if (S.view === "admin_login") renderLogin(root);
-    else if (S.view === "admin")  renderAdmin(root);
+    else if (S.view === "admin")       renderAdmin(root);
   }
 
   function renderOrder(root) {
@@ -586,17 +614,17 @@
 
   function renderAdmin(root) {
     const n    = S.orders.length;
-    const jars = S.orders.reduce((s, o) => s + o.sizes.reduce((a, b) => a + b.qty, 0), 0);
+    const jars = S.orders.reduce((s, o) => s + (o.sizes || []).reduce((a, b) => a + b.qty, 0), 0);
     const activeCount = TYPES.filter(t => S.settings.types[t.key]).length;
 
     const ordersHtml = n === 0
       ? `<div class="empty">// No orders yet</div>`
       : S.orders.map((o, i) => {
-          const typeBadges = o.types.map(t => `<span class="badge ty">${t.qty}× ${esc(t.en)}</span>`).join("");
-          const sizeBadges = o.sizes.map(s => `<span class="badge sz">${s.qty}× ${esc(s.en||s.key)}</span>`).join("");
+          const typeBadges = (o.types || []).map(t => `<span class="badge ty">${t.qty}× ${esc(t.en)}</span>`).join("");
+          const sizeBadges = (o.sizes || []).map(s => `<span class="badge sz">${s.qty}× ${esc(s.en || s.key)}</span>`).join("");
           return `
             <div class="ocard">
-              <button class="del-btn" onclick="deleteOrder(${o.id})">×</button>
+              <button class="del-btn" onclick="deleteOrder('${esc(o.fbKey)}')">×</button>
               <div class="otop">
                 <div>
                   <div class="oname">${esc(o.name)}</div>
@@ -623,7 +651,7 @@
                 <div class="sw-tr"></div><div class="sw-th"></div>
               </label>
             </div>`).join("")}
-          <div class="settings-note">Disabled types are hidden from the order form immediately</div>
+          <div class="settings-note">Changes save to the database instantly — all devices update immediately</div>
         </div>
       </div>
       <div class="section">
@@ -654,7 +682,7 @@
         <button class="logout-btn" onclick="S.adminUser=null;S.view='order';render()">Sign out</button>
       </div>
       <div class="tabs">
-        <button class="tab-btn ${S.adminTab === 'orders' ? 'on' : ''}" onclick="S.adminTab='orders';render()">Orders (${n})</button>
+        <button class="tab-btn ${S.adminTab === 'orders'   ? 'on' : ''}" onclick="S.adminTab='orders';render()">Orders (${n})</button>
         <button class="tab-btn ${S.adminTab === 'settings' ? 'on' : ''}" onclick="S.adminTab='settings';render()">Form Settings</button>
       </div>
       ${S.adminTab === 'orders' ? `
