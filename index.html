@@ -20,8 +20,6 @@
       --amber-dark: #BA7517;
       --amber-text: #412402;
       --green: #639922;
-      --green-bg: #EAF3DE;
-      --green-dark: #27500A;
       --red: #E24B4A;
     }
 
@@ -46,93 +44,95 @@
     .section { border: 1px solid var(--border); border-radius: 2px; margin-bottom: 12px; }
     .shdr {
       display: flex; align-items: center; gap: 8px;
-      padding: 7px 14px;
-      background: var(--bg2);
+      padding: 7px 14px; background: var(--bg2);
       border-bottom: 1px solid var(--border);
       font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text2);
     }
     .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--amber); flex-shrink: 0; }
     .dot.g { background: var(--green); }
-    .dot.r { background: var(--red); }
-    .sbody { padding: 14px; }
+    .sbody { padding: 0; }
+    .padded { padding: 14px; }
 
-    label { display: block; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text2); margin-bottom: 5px; }
-    .lp { color: var(--amber); margin-right: 2px; }
-    input, select, textarea {
-      width: 100%; font-size: 14px; font-family: inherit;
-      padding: 9px 12px;
-      border: 1px solid var(--border2);
-      border-radius: 2px;
-      background: var(--bg3);
-      color: var(--text);
-    }
-    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--amber); }
-    textarea { resize: vertical; min-height: 72px; }
-    ::placeholder { color: var(--text3); }
-    .field { margin-bottom: 12px; }
-    .field:last-child { margin-bottom: 0; }
+    /* Kimchi type blocks */
+    .type-block { border-bottom: 1px solid var(--border); }
+    .type-block:last-child { border-bottom: none; }
+    .type-header { padding: 12px 14px 10px; background: var(--bg2); }
+    .type-name { font-size: 14px; font-weight: bold; }
+    .type-ko   { font-size: 11px; color: var(--text3); margin-top: 1px; }
+    .type-total { font-size: 10px; color: var(--amber); margin-top: 3px; letter-spacing: 0.5px; }
 
-    .irow {
+    .size-row {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 10px 0; border-bottom: 1px solid var(--border);
+      padding: 8px 14px 8px 24px;
+      border-top: 1px solid var(--border);
     }
-    .irow:last-child { border-bottom: none; padding-bottom: 0; }
-    .irow:first-child { padding-top: 0; }
-    .iname { font-size: 14px; }
-    .isub { font-size: 11px; color: var(--text3); margin-top: 1px; }
+    .size-label { font-size: 13px; color: var(--text2); }
+    .size-sub   { font-size: 10px; color: var(--text3); }
+
     .qwrap { display: flex; align-items: center; }
     .qb {
-      width: 30px; height: 30px;
-      border: 1px solid var(--border2);
-      background: var(--bg2); color: var(--text);
-      font-size: 16px; cursor: pointer; font-family: inherit;
+      width: 28px; height: 28px;
+      border: 1px solid var(--border2); background: var(--bg2); color: var(--text);
+      font-size: 15px; cursor: pointer; font-family: inherit;
       display: flex; align-items: center; justify-content: center;
     }
     .qb:first-child { border-radius: 2px 0 0 2px; }
     .qb:last-child  { border-radius: 0 2px 2px 0; }
     .qb:hover { border-color: var(--amber); color: var(--amber); }
+    .qb.active { border-color: var(--amber); }
     .qn {
-      width: 38px; height: 30px;
+      width: 34px; height: 28px;
       border-top: 1px solid var(--border2); border-bottom: 1px solid var(--border2);
       display: flex; align-items: center; justify-content: center;
-      font-size: 14px; font-weight: bold; background: var(--bg);
+      font-size: 13px; font-weight: bold; background: var(--bg);
     }
-    .total-hint { text-align: right; font-size: 11px; color: var(--text2); margin-top: 8px; }
-    .total-hint b { color: var(--amber); }
+    .qn.active { color: var(--amber); }
+
+    label { display: block; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text2); margin-bottom: 5px; }
+    .lp { color: var(--amber); margin-right: 2px; }
+    input, textarea {
+      width: 100%; font-size: 14px; font-family: inherit;
+      padding: 9px 12px; border: 1px solid var(--border2); border-radius: 2px;
+      background: var(--bg3); color: var(--text);
+    }
+    input:focus, textarea:focus { outline: none; border-color: var(--amber); }
+    textarea { resize: vertical; min-height: 72px; }
+    ::placeholder { color: var(--text3); }
+    .field { margin-bottom: 12px; }
+    .field:last-child { margin-bottom: 0; }
+
+    .summary-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 14px; background: var(--bg2);
+      border-top: 1px solid var(--border);
+      font-size: 11px; color: var(--text2);
+    }
+    .summary-bar b { color: var(--amber); }
 
     .submit-btn {
-      width: 100%; padding: 13px;
-      background: var(--amber); color: var(--amber-text);
-      border: none; border-radius: 2px;
-      font-size: 11px; font-weight: bold; font-family: inherit;
-      letter-spacing: 2px; text-transform: uppercase; cursor: pointer; margin-top: 8px;
+      width: 100%; padding: 13px; background: var(--amber); color: var(--amber-text);
+      border: none; border-radius: 2px; font-size: 11px; font-weight: bold;
+      font-family: inherit; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; margin-top: 8px;
     }
     .submit-btn:hover { background: var(--amber-dark); color: #fff; }
-    .submit-btn:disabled {
-      background: var(--bg2); color: var(--text3); cursor: not-allowed;
-      border: 1px solid var(--border);
-    }
+    .submit-btn:disabled { background: var(--bg2); color: var(--text3); cursor: not-allowed; border: 1px solid var(--border); }
     .new-order-btn {
-      width: 100%; padding: 11px;
-      background: none; border: 1px solid var(--amber);
-      border-radius: 2px; color: var(--amber);
-      font-size: 10px; cursor: pointer; margin-top: 8px;
+      width: 100%; padding: 11px; background: none; border: 1px solid var(--amber);
+      border-radius: 2px; color: var(--amber); font-size: 10px; cursor: pointer; margin-top: 8px;
       font-family: inherit; letter-spacing: 2px; text-transform: uppercase;
     }
     .new-order-btn:hover { background: rgba(239,159,39,0.1); }
 
     .a-link { text-align: center; margin-top: 1.5rem; }
     .a-link button {
-      background: none; border: none;
-      color: var(--text3); font-size: 10px; cursor: pointer;
-      font-family: inherit; letter-spacing: 1.5px; text-transform: uppercase;
+      background: none; border: none; color: var(--text3); font-size: 10px;
+      cursor: pointer; font-family: inherit; letter-spacing: 1.5px; text-transform: uppercase;
     }
     .a-link button:hover { color: var(--text2); }
 
     .success-box {
       border: 1px solid var(--green); border-radius: 2px;
-      padding: 1.5rem; text-align: center;
-      background: rgba(99,153,34,0.1);
+      padding: 1.5rem; text-align: center; background: rgba(99,153,34,0.1);
     }
     .success-box h2 { color: #9bd44e; font-size: 15px; letter-spacing: 2px; text-transform: uppercase; }
     .success-box p  { color: var(--green); font-size: 11px; letter-spacing: 1px; margin-top: 6px; text-transform: uppercase; }
@@ -144,8 +144,7 @@
 
     .adm-hdr {
       display: flex; align-items: flex-start; justify-content: space-between;
-      margin-bottom: 1.5rem; padding-bottom: 1rem;
-      border-bottom: 1px solid var(--border2);
+      margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border2);
     }
     .adm-title { font-size: 16px; letter-spacing: 3px; text-transform: uppercase; }
     .adm-user  { font-size: 10px; color: var(--amber); letter-spacing: 1px; margin-top: 3px; text-transform: uppercase; }
@@ -167,7 +166,7 @@
     .stat-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 1.5rem; }
     .stat-card { border: 1px solid var(--border); border-radius: 2px; padding: 12px; background: var(--bg2); }
     .sl { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--text3); }
-    .sv { font-size: 26px; font-weight: bold; margin-top: 2px; color: var(--text); }
+    .sv { font-size: 26px; font-weight: bold; margin-top: 2px; }
 
     .ocard {
       border: 1px solid var(--border); border-radius: 2px;
@@ -178,9 +177,11 @@
     .oname    { font-size: 15px; font-weight: bold; }
     .oid      { font-size: 10px; letter-spacing: 1px; color: var(--text3); flex-shrink: 0; }
     .ocontact { font-size: 12px; color: var(--text2); margin-top: 3px; }
-    .badge { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 2px; margin: 3px 3px 0 0; }
-    .badge.ty { border: 1px solid rgba(239,159,39,0.4); background: rgba(239,159,39,0.08); color: var(--amber); }
-    .badge.sz { border: 1px solid rgba(99,153,34,0.4); background: rgba(99,153,34,0.08); color: #9bd44e; }
+    .order-lines { margin-top: 10px; border-top: 1px solid var(--border); padding-top: 10px; }
+    .order-line { display: flex; align-items: baseline; justify-content: space-between; padding: 3px 0; }
+    .ol-type { font-size: 12px; }
+    .ol-size { font-size: 11px; color: var(--text2); margin-left: 6px; }
+    .ol-qty  { font-size: 11px; color: var(--amber); font-weight: bold; flex-shrink: 0; }
     .onotes { font-size: 12px; color: var(--text2); margin-top: 8px; font-style: italic; }
     .ots    { font-size: 10px; color: var(--text3); margin-top: 8px; letter-spacing: 0.5px; }
     .del-btn {
@@ -199,68 +200,45 @@
     .trow:first-child { padding-top: 0; }
     .tlbl { font-size: 13px; }
     .tsub { font-size: 11px; color: var(--text3); margin-top: 1px; }
-
     .sw { position: relative; width: 38px; height: 20px; flex-shrink: 0; }
     .sw input { opacity: 0; width: 0; height: 0; position: absolute; }
     .sw-tr {
-      position: absolute; inset: 0; border-radius: 10px;
-      background: var(--bg3); cursor: pointer;
-      border: 1px solid var(--border2); transition: background .15s, border-color .15s;
+      position: absolute; inset: 0; border-radius: 10px; background: var(--bg3);
+      cursor: pointer; border: 1px solid var(--border2); transition: background .15s;
     }
     .sw input:checked + .sw-tr { background: var(--amber); border-color: var(--amber-dark); }
     .sw-th {
-      position: absolute; width: 14px; height: 14px;
-      background: #fff; border-radius: 50%;
+      position: absolute; width: 14px; height: 14px; background: #fff; border-radius: 50%;
       top: 3px; left: 3px; pointer-events: none; transition: transform .15s;
     }
     .sw input:checked ~ .sw-th { transform: translateX(18px); }
 
     .empty { text-align: center; padding: 2.5rem; font-size: 11px; color: var(--text3); letter-spacing: 1.5px; text-transform: uppercase; }
     .back-btn {
-      background: none; border: none; color: var(--text2);
-      font-size: 10px; cursor: pointer; font-family: inherit;
-      letter-spacing: 1.5px; text-transform: uppercase; padding: 0;
+      background: none; border: none; color: var(--text2); font-size: 10px; cursor: pointer;
+      font-family: inherit; letter-spacing: 1.5px; text-transform: uppercase; padding: 0;
     }
     .back-btn:hover { color: var(--amber); }
     .clear-btn {
-      width: 100%; padding: 10px;
-      background: none; border: 1px solid var(--red); border-radius: 2px;
+      width: 100%; padding: 10px; background: none; border: 1px solid var(--red); border-radius: 2px;
       color: var(--red); font-size: 10px; cursor: pointer;
       font-family: inherit; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 1rem;
     }
     .clear-btn:hover { background: rgba(226,75,74,0.1); }
     .settings-note { font-size: 11px; color: var(--text3); letter-spacing: 0.5px; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
-
-    .syncing { font-size: 10px; color: var(--text3); letter-spacing: 1px; text-transform: uppercase; text-align: center; padding: 3rem; }
-    .sync-indicator {
-      display: inline-block; font-size: 10px; color: var(--text3);
-      letter-spacing: 1px; text-transform: uppercase; margin-left: 8px;
-      vertical-align: middle;
-    }
-    .sync-indicator.saving { color: var(--amber); }
-    .sync-indicator.saved  { color: var(--green); }
+    .syncing { text-align: center; padding: 3rem; font-size: 11px; color: var(--text3); letter-spacing: 2px; text-transform: uppercase; }
   </style>
 </head>
 <body>
 <div class="app" id="root"></div>
-
 <script>
-  /* ─────────────────────────────────────────
-     FIREBASE CONFIG
-  ───────────────────────────────────────── */
   const FB_URL = "https://bks-kimchi-default-rtdb.firebaseio.com";
 
-  /* ─────────────────────────────────────────
-     ADMIN PASSWORDS
-  ───────────────────────────────────────── */
   const ADMINS = {
     "bkadmin":   "You (Admin)",
     "dadkimchi": "Dad"
   };
 
-  /* ─────────────────────────────────────────
-     KIMCHI TYPES & JAR SIZES
-  ───────────────────────────────────────── */
   const TYPES = [
     { key: "napa",     en: "Napa Cabbage Kimchi", ko: "배추 김치"  },
     { key: "radish",   en: "Radish Kkakdugi",      ko: "깍두기"    },
@@ -269,221 +247,157 @@
   ];
 
   const SIZES = [
-    { key: "small",  en: "Small",  sub: "1 pint"   },
-    { key: "medium", en: "Medium", sub: "1 quart"  },
-    { key: "large",  en: "Large",  sub: "½ gallon" }
+    { key: "500g",  en: "500g",  sub: "Small container"  },
+    { key: "1kg",   en: "1kg",   sub: "Medium container" },
+    { key: "1_5kg", en: "1.5kg", sub: "Large container"  }
   ];
 
-  /* ─────────────────────────────────────────
-     DEFAULT SETTINGS
-  ───────────────────────────────────────── */
   const DEF_SETTINGS = {
-    showSizes: true,
-    showNotes: true,
-    showPhone: true,
-    showEmail: true,
+    showSizes: true, showNotes: true, showPhone: true, showEmail: true,
     types: Object.fromEntries(TYPES.map(t => [t.key, true]))
   };
 
-  /* ─────────────────────────────────────────
-     APP STATE
-  ───────────────────────────────────────── */
+  // counts[typeKey][sizeKey] = quantity
+  function freshCounts() {
+    return Object.fromEntries(
+      TYPES.map(t => [t.key, Object.fromEntries(
+        [...SIZES.map(s => [s.key, 0]), ["units", 0]]
+      )])
+    );
+  }
+
   let S = {
-    view: "order",
-    submitted: false,
-    adminUser: null,
-    adminTab: "orders",
+    view: "order", submitted: false,
+    adminUser: null, adminTab: "orders",
     pwInput: "", pwError: false,
-    orders: [],
-    settings: JSON.parse(JSON.stringify(DEF_SETTINGS)),
+    orders: [], settings: JSON.parse(JSON.stringify(DEF_SETTINGS)),
     loading: true,
-    syncStatus: "",
     form: { name: "", phone: "", email: "", notes: "" },
-    counts: Object.fromEntries(TYPES.map(t => [t.key, 0])),
-    sizes:  Object.fromEntries(SIZES.map(s => [s.key, 0]))
+    counts: freshCounts()
   };
 
-  /* ─────────────────────────────────────────
-     FIREBASE REST HELPERS
-  ───────────────────────────────────────── */
+  /* Firebase helpers */
   async function fbGet(path) {
     const res = await fetch(`${FB_URL}/${path}.json`);
-    if (!res.ok) throw new Error("Firebase read failed");
+    if (!res.ok) throw new Error("read failed");
     return res.json();
   }
-
   async function fbSet(path, data) {
     const res = await fetch(`${FB_URL}/${path}.json`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      method: "PUT", headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
     });
-    if (!res.ok) throw new Error("Firebase write failed");
+    if (!res.ok) throw new Error("write failed");
     return res.json();
   }
-
   async function fbPush(path, data) {
     const res = await fetch(`${FB_URL}/${path}.json`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+      method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
     });
-    if (!res.ok) throw new Error("Firebase push failed");
+    if (!res.ok) throw new Error("push failed");
     return res.json();
   }
-
   async function fbDelete(path) {
     await fetch(`${FB_URL}/${path}.json`, { method: "DELETE" });
   }
 
-  /* ─────────────────────────────────────────
-     LOAD DATA
-  ───────────────────────────────────────── */
   async function loadData() {
     try {
-      const [rawOrders, rawSettings] = await Promise.all([
-        fbGet("orders"),
-        fbGet("settings")
-      ]);
-
-      // Firebase stores pushed items as an object keyed by ID
+      const [rawOrders, rawSettings] = await Promise.all([fbGet("orders"), fbGet("settings")]);
       if (rawOrders && typeof rawOrders === "object") {
         S.orders = Object.entries(rawOrders)
           .map(([fbKey, o]) => ({ ...o, fbKey }))
           .sort((a, b) => b.id - a.id);
-      } else {
-        S.orders = [];
       }
-
       if (rawSettings) {
-        S.settings = {
-          ...DEF_SETTINGS, ...rawSettings,
-          types: { ...DEF_SETTINGS.types, ...(rawSettings.types || {}) }
-        };
+        S.settings = { ...DEF_SETTINGS, ...rawSettings, types: { ...DEF_SETTINGS.types, ...(rawSettings.types || {}) } };
       }
-    } catch (e) {
-      console.error("Load error:", e);
-    }
-    S.loading = false;
-    render();
+    } catch (e) { console.error("Load error:", e); }
+    S.loading = false; render();
   }
 
-  /* ─────────────────────────────────────────
-     ACTIONS
-  ───────────────────────────────────────── */
+  /* Helpers */
+  function adj(typeKey, sizeKey, delta) {
+    S.counts[typeKey][sizeKey] = Math.max(0, (S.counts[typeKey][sizeKey] || 0) + delta);
+  }
+  function typeTotal(typeKey) {
+    const keys = S.settings.showSizes ? SIZES.map(s => s.key) : ["units"];
+    return keys.reduce((s, k) => s + (S.counts[typeKey][k] || 0), 0);
+  }
+  function grandTotal() {
+    return TYPES.filter(t => S.settings.types[t.key]).reduce((s, t) => s + typeTotal(t.key), 0);
+  }
+  function canSubmit() {
+    const f = S.form;
+    return f.name.trim() && (f.phone.trim() || f.email.trim()) && grandTotal() > 0;
+  }
+  function esc(s) {
+    return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  /* Actions */
   async function submitOrder() {
     if (!canSubmit()) return;
     const f = S.form;
+    const lines = [];
+    TYPES.filter(t => S.settings.types[t.key]).forEach(t => {
+      if (S.settings.showSizes) {
+        SIZES.forEach(s => {
+          const qty = S.counts[t.key][s.key] || 0;
+          if (qty > 0) lines.push({ typeKey: t.key, typeEn: t.en, typeKo: t.ko, sizeKey: s.key, sizeEn: s.en, sizeSub: s.sub, qty });
+        });
+      } else {
+        const qty = S.counts[t.key]["units"] || 0;
+        if (qty > 0) lines.push({ typeKey: t.key, typeEn: t.en, typeKo: t.ko, qty });
+      }
+    });
     const order = {
       id: Date.now(),
-      name:  f.name.trim(),
-      phone: f.phone.trim(),
-      email: f.email.trim(),
-      notes: f.notes.trim(),
-      types: TYPES.filter(t => S.settings.types[t.key] && S.counts[t.key] > 0)
-                  .map(t => ({ key: t.key, qty: S.counts[t.key], en: t.en, ko: t.ko })),
-      sizes: SIZES.filter(s => S.sizes[s.key] > 0)
-                  .map(s => ({ key: s.key, qty: S.sizes[s.key], en: s.en })),
-      date: new Date().toLocaleString("en-US", {
-        month: "short", day: "numeric", year: "numeric",
-        hour: "numeric", minute: "2-digit"
-      })
+      name: f.name.trim(), phone: f.phone.trim(), email: f.email.trim(), notes: f.notes.trim(),
+      lines, totalJars: grandTotal(),
+      date: new Date().toLocaleString("en-US", { month:"short", day:"numeric", year:"numeric", hour:"numeric", minute:"2-digit" })
     };
     try {
       const result = await fbPush("orders", order);
       order.fbKey = result.name;
       S.orders.unshift(order);
       S.submitted = true;
-    } catch (e) {
-      alert("Could not save order. Check your connection and try again.");
-      return;
-    }
+    } catch (e) { alert("Could not save order. Check your connection and try again."); return; }
     render();
   }
 
   async function deleteOrder(fbKey) {
-    try {
-      await fbDelete(`orders/${fbKey}`);
-      S.orders = S.orders.filter(o => o.fbKey !== fbKey);
-      render();
-    } catch (e) {
-      alert("Could not delete order. Try again.");
-    }
+    try { await fbDelete(`orders/${fbKey}`); S.orders = S.orders.filter(o => o.fbKey !== fbKey); render(); }
+    catch (e) { alert("Could not delete order."); }
   }
 
   async function clearOrders() {
     if (!confirm("Delete all orders? This cannot be undone.")) return;
-    try {
-      await fbDelete("orders");
-      S.orders = [];
-      render();
-    } catch (e) {
-      alert("Could not clear orders. Try again.");
-    }
+    try { await fbDelete("orders"); S.orders = []; render(); } catch (e) { alert("Could not clear orders."); }
   }
 
-  async function toggleSetting(key, val) {
-    S.settings[key] = val;
-    render();
-    await fbSet("settings", S.settings);
-  }
-
-  async function toggleType(key, val) {
-    S.settings.types[key] = val;
-    render();
-    await fbSet("settings", S.settings);
-  }
+  async function toggleSetting(key, val) { S.settings[key] = val; render(); await fbSet("settings", S.settings); }
+  async function toggleType(key, val)    { S.settings.types[key] = val; render(); await fbSet("settings", S.settings); }
 
   function checkPw() {
     const user = ADMINS[S.pwInput];
-    if (user) {
-      S.adminUser = user;
-      S.view = "admin";
-      S.pwInput = ""; S.pwError = false;
-    } else {
-      S.pwError = true;
-    }
+    if (user) { S.adminUser = user; S.view = "admin"; S.pwInput = ""; S.pwError = false; }
+    else { S.pwError = true; }
     render();
   }
 
   function resetForm() {
-    S.form   = { name: "", phone: "", email: "", notes: "" };
-    S.counts = Object.fromEntries(TYPES.map(t => [t.key, 0]));
-    S.sizes  = Object.fromEntries(SIZES.map(s => [s.key, 0]));
-    S.submitted = false;
-    render();
+    S.form = { name: "", phone: "", email: "", notes: "" };
+    S.counts = freshCounts();
+    S.submitted = false; render();
   }
 
-  /* ─────────────────────────────────────────
-     HELPERS
-  ───────────────────────────────────────── */
-  function adj(map, k, d) { map[k] = Math.max(0, (map[k] || 0) + d); }
-  function totalSizes() { return Object.values(S.sizes).reduce((a, b) => a + b, 0); }
-  function totalTypes() {
-    return TYPES.filter(t => S.settings.types[t.key]).reduce((s, t) => s + (S.counts[t.key] || 0), 0);
-  }
-  function canSubmit() {
-    const f = S.form;
-    return f.name.trim() && (f.phone.trim() || f.email.trim())
-      && totalTypes() > 0
-      && (!S.settings.showSizes || totalSizes() > 0);
-  }
-  function esc(s) {
-    return String(s || '')
-      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
-      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
-  /* ─────────────────────────────────────────
-     RENDER
-  ───────────────────────────────────────── */
+  /* Render */
   function render() {
     const root = document.getElementById("root");
-    if (S.loading) {
-      root.innerHTML = '<div class="syncing">// Connecting to database<span class="blink"> _</span></div>';
-      return;
-    }
-    if (S.view === "order")            renderOrder(root);
+    if (S.loading) { root.innerHTML = `<div class="syncing">// Connecting to database<span class="blink"> _</span></div>`; return; }
+    if      (S.view === "order")       renderOrder(root);
     else if (S.view === "admin_login") renderLogin(root);
     else if (S.view === "admin")       renderAdmin(root);
   }
@@ -495,10 +409,7 @@
           <div class="logo"><span class="logo-a">BK</span>'S KIMCHI</div>
           <div class="tagline">Handmade · Korean Traditional<span class="blink"> _</span></div>
         </div>
-        <div class="success-box">
-          <h2>✓ Order Received</h2>
-          <p>We'll contact you when your kimchi is ready</p>
-        </div>
+        <div class="success-box"><h2>✓ Order Received</h2><p>We'll contact you when your kimchi is ready</p></div>
         <button class="new-order-btn" onclick="resetForm()">[ Place another order ]</button>
         <div class="a-link"><button onclick="S.view='admin_login';render()">Admin access</button></div>`;
       return;
@@ -506,40 +417,55 @@
 
     const activeTypes = TYPES.filter(t => S.settings.types[t.key]);
 
-    const typesHtml = activeTypes.map(t => `
-      <div class="irow">
-        <div><div class="iname">${esc(t.en)}</div><div class="isub">${esc(t.ko)}</div></div>
-        <div class="qwrap">
-          <button class="qb" onclick="adj(S.counts,'${t.key}',-1);render()">−</button>
-          <div class="qn">${S.counts[t.key] || 0}</div>
-          <button class="qb" onclick="adj(S.counts,'${t.key}',1);render()">+</button>
-        </div>
-      </div>`).join("");
-
-    const sizesHtml = S.settings.showSizes ? `
-      <div class="section">
-        <div class="shdr"><span class="dot"></span>Jar Size / 크기</div>
-        <div class="sbody">
-          ${SIZES.map(s => `
-            <div class="irow">
-              <div><div class="iname">${esc(s.en)}</div><div class="isub">${esc(s.sub)}</div></div>
+    const typesHtml = activeTypes.map(t => {
+      const tot = typeTotal(t.key);
+      let sizesHtml;
+      if (S.settings.showSizes) {
+        sizesHtml = SIZES.map(s => {
+          const qty = S.counts[t.key][s.key] || 0;
+          return `
+            <div class="size-row">
+              <div><div class="size-label">${esc(s.en)}</div><div class="size-sub">${esc(s.sub)}</div></div>
               <div class="qwrap">
-                <button class="qb" onclick="adj(S.sizes,'${s.key}',-1);render()">−</button>
-                <div class="qn">${S.sizes[s.key] || 0}</div>
-                <button class="qb" onclick="adj(S.sizes,'${s.key}',1);render()">+</button>
+                <button class="qb${qty>0?' active':''}" onclick="adj('${t.key}','${s.key}',-1);render()">−</button>
+                <div class="qn${qty>0?' active':''}">${qty}</div>
+                <button class="qb${qty>0?' active':''}" onclick="adj('${t.key}','${s.key}',1);render()">+</button>
               </div>
-            </div>`).join("")}
-          ${totalSizes() > 0 ? `<div class="total-hint"><b>${totalSizes()}</b> jar${totalSizes() !== 1 ? 's' : ''} total</div>` : ''}
-        </div>
-      </div>` : '';
+            </div>`;
+        }).join("");
+      } else {
+        const qty = S.counts[t.key]["units"] || 0;
+        sizesHtml = `
+          <div class="size-row">
+            <div><div class="size-label">Quantity / 수량</div></div>
+            <div class="qwrap">
+              <button class="qb${qty>0?' active':''}" onclick="adj('${t.key}','units',-1);render()">−</button>
+              <div class="qn${qty>0?' active':''}">${qty}</div>
+              <button class="qb${qty>0?' active':''}" onclick="adj('${t.key}','units',1);render()">+</button>
+            </div>
+          </div>`;
+      }
+      return `
+        <div class="type-block">
+          <div class="type-header">
+            <div class="type-name">${esc(t.en)}</div>
+            <div class="type-ko">${esc(t.ko)}</div>
+            ${tot > 0 ? `<div class="type-total">▸ ${tot} jar${tot!==1?'s':''} selected</div>` : ''}
+          </div>
+          ${sizesHtml}
+        </div>`;
+    }).join("");
 
     const notesHtml = S.settings.showNotes ? `
       <div class="section">
         <div class="shdr"><span class="dot"></span>Notes / 메모</div>
-        <div class="sbody">
+        <div class="padded">
           <textarea placeholder="Spice level, pickup time, 메모..." oninput="S.form.notes=this.value">${esc(S.form.notes)}</textarea>
         </div>
       </div>` : '';
+
+    const gt = grandTotal();
+    const summaryBar = gt > 0 ? `<div class="summary-bar"><span>Total order</span><span><b>${gt}</b> jar${gt!==1?'s':''}</span></div>` : '';
 
     const submitBtn = canSubmit()
       ? `<button class="submit-btn" onclick="submitOrder()">[ Submit Order ]</button>`
@@ -552,36 +478,23 @@
       </div>
       <div class="section">
         <div class="shdr"><span class="dot"></span>Your Info / 정보</div>
-        <div class="sbody">
+        <div class="padded">
           <div class="field">
             <label><span class="lp">›</span>Name / 이름 *</label>
-            <input type="text" lang="ko" autocomplete="name" placeholder="Full name / 성함"
-              value="${esc(S.form.name)}" oninput="S.form.name=this.value">
+            <input type="text" lang="ko" autocomplete="name" placeholder="Full name / 성함" value="${esc(S.form.name)}" oninput="S.form.name=this.value">
           </div>
-          ${S.settings.showPhone ? `
-          <div class="field">
-            <label><span class="lp">›</span>Phone / 전화번호</label>
-            <input type="tel" autocomplete="tel" placeholder="(516) 555-0100"
-              value="${esc(S.form.phone)}" oninput="S.form.phone=this.value">
-          </div>` : ''}
-          ${S.settings.showEmail ? `
-          <div class="field" style="margin-bottom:0">
-            <label><span class="lp">›</span>Email / 이메일</label>
-            <input type="email" autocomplete="email" placeholder="email@example.com"
-              value="${esc(S.form.email)}" oninput="S.form.email=this.value">
-          </div>` : ''}
-          <div style="font-size:10px;color:var(--text3);letter-spacing:0.5px;margin-top:6px">
-            * name + phone or email required
-          </div>
+          ${S.settings.showPhone ? `<div class="field"><label><span class="lp">›</span>Phone / 전화번호</label><input type="tel" autocomplete="tel" placeholder="(516) 555-0100" value="${esc(S.form.phone)}" oninput="S.form.phone=this.value"></div>` : ''}
+          ${S.settings.showEmail ? `<div class="field" style="margin-bottom:0"><label><span class="lp">›</span>Email / 이메일</label><input type="email" autocomplete="email" placeholder="email@example.com" value="${esc(S.form.email)}" oninput="S.form.email=this.value"></div>` : ''}
+          <div style="font-size:10px;color:var(--text3);letter-spacing:0.5px;margin-top:6px">* name + phone or email required</div>
         </div>
       </div>
       <div class="section">
-        <div class="shdr"><span class="dot"></span>Kimchi Type / 종류</div>
+        <div class="shdr"><span class="dot"></span>Kimchi Order / 주문</div>
         <div class="sbody">
-          ${activeTypes.length ? typesHtml : '<div class="empty" style="padding:1rem">No types currently available</div>'}
+          ${activeTypes.length ? typesHtml : '<div class="empty">No types currently available</div>'}
+          ${summaryBar}
         </div>
       </div>
-      ${sizesHtml}
       ${notesHtml}
       ${submitBtn}
       <div class="a-link"><button onclick="S.view='admin_login';render()">Admin access</button></div>`;
@@ -597,111 +510,95 @@
         <div class="pw-sys">// Secure Admin Access</div>
         <h2>Sign In</h2>
         <div style="font-size:11px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin-bottom:1.5rem">Enter admin password</div>
-        <div class="field">
-          <input type="password" id="pwi" placeholder="••••••••"
-            value="${esc(S.pwInput)}"
-            oninput="S.pwInput=this.value"
-            onkeydown="if(event.key==='Enter')checkPw()">
-        </div>
+        <div class="field"><input type="password" id="pwi" placeholder="••••••••" value="${esc(S.pwInput)}" oninput="S.pwInput=this.value" onkeydown="if(event.key==='Enter')checkPw()"></div>
         <button class="submit-btn" onclick="checkPw()">[ Enter ]</button>
         ${S.pwError ? '<div class="pw-err">// Access denied</div>' : ''}
       </div>
-      <div class="a-link">
-        <button onclick="S.view='order';S.pwInput='';S.pwError=false;render()">← Back to order form</button>
-      </div>`;
+      <div class="a-link"><button onclick="S.view='order';S.pwInput='';S.pwError=false;render()">← Back to order form</button></div>`;
     setTimeout(() => { const el = document.getElementById("pwi"); if (el) el.focus(); }, 50);
   }
 
   function renderAdmin(root) {
     const n    = S.orders.length;
-    const jars = S.orders.reduce((s, o) => s + (o.sizes || []).reduce((a, b) => a + b.qty, 0), 0);
+    const jars = S.orders.reduce((s, o) => s + (o.totalJars || 0), 0);
     const activeCount = TYPES.filter(t => S.settings.types[t.key]).length;
 
-    const ordersHtml = n === 0
-      ? `<div class="empty">// No orders yet</div>`
-      : S.orders.map((o, i) => {
-          const typeBadges = (o.types || []).map(t => `<span class="badge ty">${t.qty}× ${esc(t.en)}</span>`).join("");
-          const sizeBadges = (o.sizes || []).map(s => `<span class="badge sz">${s.qty}× ${esc(s.en || s.key)}</span>`).join("");
-          return `
-            <div class="ocard">
-              <button class="del-btn" onclick="deleteOrder('${esc(o.fbKey)}')">×</button>
-              <div class="otop">
-                <div>
-                  <div class="oname">${esc(o.name)}</div>
-                  ${o.phone || o.email ? `<div class="ocontact">${o.phone ? `📞 ${esc(o.phone)}` : ''}${o.phone && o.email ? ' · ' : ''}${o.email ? `✉ ${esc(o.email)}` : ''}</div>` : ''}
-                </div>
-                <div class="oid">#${n - i}</div>
-              </div>
-              <div style="margin-top:8px">${typeBadges}</div>
-              ${sizeBadges ? `<div style="margin-top:2px">${sizeBadges}</div>` : ''}
-              ${o.notes ? `<div class="onotes">"${esc(o.notes)}"</div>` : ''}
-              <div class="ots">${esc(o.date)}</div>
-            </div>`;
-        }).join("");
+    const ordersHtml = n === 0 ? `<div class="empty">// No orders yet</div>` : S.orders.map((o, i) => {
+      const linesHtml = (o.lines || []).map(l => `
+        <div class="order-line">
+          <div>
+            <span class="ol-type">${esc(l.typeEn)}</span>
+            ${l.sizeEn ? `<span class="ol-size">· ${esc(l.sizeEn)} (${esc(l.sizeSub)})</span>` : ''}
+          </div>
+          <div class="ol-qty">${l.qty} jar${l.qty!==1?'s':''}</div>
+        </div>`).join("");
+      return `
+        <div class="ocard">
+          <button class="del-btn" onclick="deleteOrder('${esc(o.fbKey)}')">×</button>
+          <div class="otop">
+            <div>
+              <div class="oname">${esc(o.name)}</div>
+              ${o.phone||o.email ? `<div class="ocontact">${o.phone?`📞 ${esc(o.phone)}`:''}${o.phone&&o.email?' · ':''}${o.email?`✉ ${esc(o.email)}`:''}</div>` : ''}
+            </div>
+            <div class="oid">#${n-i}</div>
+          </div>
+          ${linesHtml ? `<div class="order-lines">${linesHtml}</div>` : ''}
+          ${o.notes ? `<div class="onotes">"${esc(o.notes)}"</div>` : ''}
+          <div class="ots">${esc(o.date)}</div>
+        </div>`;
+    }).join("");
 
     const settingsHtml = `
       <div class="section">
         <div class="shdr"><span class="dot g"></span>Kimchi Types</div>
-        <div class="sbody">
+        <div class="padded">
           ${TYPES.map(t => `
             <div class="trow">
               <div><div class="tlbl">${esc(t.en)}</div><div class="tsub">${esc(t.ko)}</div></div>
-              <label class="sw">
-                <input type="checkbox" ${S.settings.types[t.key] ? 'checked' : ''} onchange="toggleType('${t.key}',this.checked)">
-                <div class="sw-tr"></div><div class="sw-th"></div>
-              </label>
+              <label class="sw"><input type="checkbox" ${S.settings.types[t.key]?'checked':''} onchange="toggleType('${t.key}',this.checked)"><div class="sw-tr"></div><div class="sw-th"></div></label>
             </div>`).join("")}
-          <div class="settings-note">Changes save to the database instantly — all devices update immediately</div>
+          <div class="settings-note">Disabled types are hidden from the order form immediately</div>
         </div>
       </div>
       <div class="section">
         <div class="shdr"><span class="dot g"></span>Form Sections</div>
-        <div class="sbody">
+        <div class="padded">
           ${[
-            { key: "showSizes", label: "Jar size selection", sub: "Show small/medium/large picker" },
-            { key: "showNotes", label: "Notes field",        sub: "Special requests / 메모" },
-            { key: "showPhone", label: "Phone field",        sub: "Collect phone number" },
-            { key: "showEmail", label: "Email field",        sub: "Collect email address" }
+            { key:"showSizes", label:"Jar size selection", sub:"Show size picker per kimchi type" },
+            { key:"showNotes", label:"Notes field",        sub:"Special requests / 메모" },
+            { key:"showPhone", label:"Phone field",        sub:"Collect phone number" },
+            { key:"showEmail", label:"Email field",        sub:"Collect email address" }
           ].map(item => `
             <div class="trow">
               <div><div class="tlbl">${item.label}</div><div class="tsub">${item.sub}</div></div>
-              <label class="sw">
-                <input type="checkbox" ${S.settings[item.key] ? 'checked' : ''} onchange="toggleSetting('${item.key}',this.checked)">
-                <div class="sw-tr"></div><div class="sw-th"></div>
-              </label>
+              <label class="sw"><input type="checkbox" ${S.settings[item.key]?'checked':''} onchange="toggleSetting('${item.key}',this.checked)"><div class="sw-tr"></div><div class="sw-th"></div></label>
             </div>`).join("")}
         </div>
       </div>`;
 
     root.innerHTML = `
       <div class="adm-hdr">
-        <div>
-          <div class="adm-title">Order Dashboard</div>
-          <div class="adm-user">// Signed in as ${esc(S.adminUser)}</div>
-        </div>
+        <div><div class="adm-title">Order Dashboard</div><div class="adm-user">// Signed in as ${esc(S.adminUser)}</div></div>
         <button class="logout-btn" onclick="S.adminUser=null;S.view='order';render()">Sign out</button>
       </div>
       <div class="tabs">
-        <button class="tab-btn ${S.adminTab === 'orders'   ? 'on' : ''}" onclick="S.adminTab='orders';render()">Orders (${n})</button>
-        <button class="tab-btn ${S.adminTab === 'settings' ? 'on' : ''}" onclick="S.adminTab='settings';render()">Form Settings</button>
+        <button class="tab-btn ${S.adminTab==='orders'?'on':''}" onclick="S.adminTab='orders';render()">Orders (${n})</button>
+        <button class="tab-btn ${S.adminTab==='settings'?'on':''}" onclick="S.adminTab='settings';render()">Form Settings</button>
       </div>
-      ${S.adminTab === 'orders' ? `
+      ${S.adminTab==='orders' ? `
         <div class="stat-row">
           <div class="stat-card"><div class="sl">Total orders</div><div class="sv">${n}</div></div>
           <div class="stat-card"><div class="sl">Total jars</div><div class="sv">${jars}</div></div>
           <div class="stat-card"><div class="sl">Types active</div><div class="sv">${activeCount}</div></div>
         </div>
         ${ordersHtml}
-        ${n > 0 ? `<button class="clear-btn" onclick="clearOrders()">[ Clear all orders ]</button>` : ''}
+        ${n>0?`<button class="clear-btn" onclick="clearOrders()">[ Clear all orders ]</button>`:''}
       ` : settingsHtml}
       <div style="text-align:center;margin-top:1.5rem">
         <button class="back-btn" onclick="S.view='order';render()">← Back to order form</button>
       </div>`;
   }
 
-  /* ─────────────────────────────────────────
-     INIT
-  ───────────────────────────────────────── */
   loadData();
 </script>
 </body>
